@@ -1,0 +1,42 @@
+ROOMS TABLE:
+- id
+- number
+- room_type_id -> room_types.id
+- active 
+
+ROOM_TYPES TABLE:
+- id
+- category
+- max_capacity
+- price
+- active
+
+USERS TABLE:
+- id
+- role (admin, reservations, host)
+- full_name
+- password_hash
+- username
+- active
+
+GUESTS TABLE:
+- id
+- full_name NOT NULL
+- phone NOT NULL
+- dni/passport NOT NULL
+- address
+- mail
+
+RESERVATIONS TABLE:
+- id
+- guest_id -> guests.id
+- room_id -> rooms.id NULLABLE
+- room_type_id -> room_types.id
+- entry_date
+- departure_date
+- guest_count
+- total_amount
+- payment_due_date NULLABLE
+- state_of_pay (paid, no_paid, deposit)
+- state_of_reservation (created, checked_in, checked_out, cancelled)
+

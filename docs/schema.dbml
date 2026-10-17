@@ -1,0 +1,65 @@
+Enum role {
+  admin
+  reservations
+  host
+}
+
+Enum state_of_pay {
+  paid
+  no_paid
+  deposit
+}
+
+Enum state_of_reservation {
+  created
+  checked_in
+  checked_out
+  cancelled
+}
+
+Table rooms {
+  id integer [pk, increment]
+  number integer [unique, not null]
+  room_type_id integer [ref: > room_types.id, not null]
+  active boolean [default: true, not null]
+}
+
+Table room_types {
+  id integer [pk, increment]
+  category varchar [not null]
+  max_capacity integer [not null]
+  price decimal(10, 2) [not null]
+  active boolean [default: true, not null]
+}
+
+Table users {
+  id integer [pk, increment]
+  role role [not null]
+  full_name varchar [not null]
+  password_hash varchar [not null]
+  username varchar [not null, unique]
+  active boolean [default: true, not null]
+}
+
+Table guests {
+  id integer [pk, increment]
+  full_name varchar [not null]
+  phone varchar [not null]
+  dni_passport varchar [not null]
+  address varchar
+  mail varchar
+}
+
+Table reservations {
+  id integer [pk, increment]
+  guest_id integer [ref: > guests.id, not null] 
+  room_id integer [ref: >? rooms.id]
+  room_type_id integer [ref : > room_types.id, not null]
+  entry_date date [not null]
+  departure_date date [not null]
+  guest_count integer [not null]
+  total_amount decimal(10, 2) [not null]
+  payment_due_date date [null]
+  state_of_pay state_of_pay [not null, default: 'no_paid']
+  state_of_reservation state_of_reservation [not null, default: 'created']
+}
