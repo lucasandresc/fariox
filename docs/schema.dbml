@@ -45,7 +45,7 @@ Table guests {
   id integer [pk, increment]
   full_name varchar [not null]
   phone varchar [not null]
-  dni_passport varchar [not null]
+  identification varchar [not null]
   address varchar
   mail varchar
 }
@@ -60,6 +60,6 @@ Table reservations {
   guest_count integer [not null]
   total_amount decimal(10, 2) [not null]
   payment_due_date date [null]
-  state_of_pay state_of_pay [not null, default: 'no_paid']
-  state_of_reservation state_of_reservation [not null, default: 'created']
+  pay_status state_of_pay [not null, default: 'no_paid']
+  reservations_status state_of_reservation [not null, default: 'created']
 }

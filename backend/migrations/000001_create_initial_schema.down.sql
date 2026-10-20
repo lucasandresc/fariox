@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS reservations;
+DROP TABLE IF EXISTS rooms;
+DROP TABLE IF EXISTS guests;
+DROP TABLE IF EXISTS room_types;
+DROP TABLE IF EXISTS users;
+DROP TYPE IF EXISTS role;
+DROP TYPE IF EXISTS state_of_pay;
+DROP TYPE IF EXISTS state_of_reservation;
+
